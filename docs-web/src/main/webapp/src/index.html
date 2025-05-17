@@ -169,6 +169,22 @@
     </nav>
     
     <div ui-view="page">
+      <div class="container" ng-controller="Login">
+        <form ng-submit="login()" ng-show="!showRegister">
+          <input type="text" ng-model="user.username" placeholder="用户名" required>
+          <input type="password" ng-model="user.password" placeholder="密码" required>
+          <button type="submit">登录</button>
+          <button type="button" ng-click="openRegister()">注册</button>
+        </form>
+        <form ng-submit="submitRegister()" ng-show="showRegister">
+          <input type="text" ng-model="registerData.username" placeholder="用户名" required>
+          <input type="email" ng-model="registerData.email" placeholder="邮箱" required>
+          <input type="password" ng-model="registerData.password" placeholder="密码" required>
+          <button type="submit">提交注册请求</button>
+          <button type="button" ng-click="closeRegister()">返回登录</button>
+          <div>{{registerMsg}}</div>
+        </form>
+      </div>
     </div>
 
     <div class="row" ng-controller="Footer">

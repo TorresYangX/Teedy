@@ -31,7 +31,8 @@
       <div class="col-lg-offset-4 col-lg-4 col-xs-offset-1 col-xs-10">
         <img src="img/title.png" class="img-responsive" />
 
-        <form>
+        <!-- 登录表单 -->
+        <form ng-show="!showRegister" ng-submit="login()">
           <div class="form-group">
             <label class="sr-only" for="inputUsername">{{ 'login.username' | translate }}</label>
             <input class="form-control" type="text" id="inputUsername" name="username"
@@ -62,11 +63,10 @@
 
           <div class="row">
             <div class="col-md-6">
-              <button type="submit" class="btn btn-primary" ng-click="login()">
+              <button type="submit" class="btn btn-primary">
                 <span class="fas fa-check"></span> {{ 'login.submit' | translate }}
               </button>
             </div>
-
             <div class="col-md-6 text-right btn-password-lost">
               <div class="well-sm">
                 <a href ng-click="openPasswordLost()">{{ 'login.password_lost_btn' | translate }}</a>
@@ -75,10 +75,25 @@
           </div>
 
           <p class="text-center" ng-if="app.guest_login">&nbsp;</p>
-
           <button type="submit" class="btn btn-default btn-block" ng-if="app.guest_login" ng-click="loginAsGuest()">
             <span class="fas fa-user"></span> {{ 'login.login_as_guest' | translate }}
           </button>
+          <!-- 新增注册按钮 -->
+          <button type="button" class="btn btn-link btn-block" ng-click="openRegister()">注册</button>
+        </form>
+        <form ng-show="showRegister" ng-submit="submitRegister()">
+          <div class="form-group">
+            <input class="form-control" type="text" ng-model="registerData.username" placeholder="用户名" required>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="email" ng-model="registerData.email" placeholder="邮箱" required>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" ng-model="registerData.password" placeholder="密码" required>
+          </div>
+          <button type="submit" class="btn btn-success btn-block">提交注册请求</button>
+          <button type="button" class="btn btn-link btn-block" ng-click="closeRegister()">返回登录</button>
+          <div class="text-info">{{registerMsg}}</div>
         </form>
       </div>
     </div>

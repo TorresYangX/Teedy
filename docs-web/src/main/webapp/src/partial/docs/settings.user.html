@@ -24,6 +24,28 @@
         </tr>
       </tbody>
     </table>
+    <!-- 注册请求审批表格 -->
+    <h4>待审批注册请求</h4>
+    <button class="btn btn-default btn-xs" ng-click="loadRegisterRequests()">刷新</button>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>用户名</th>
+          <th>邮箱</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="req in registerRequests">
+          <td>{{ req.username }}</td>
+          <td>{{ req.email }}</td>
+          <td>
+            <button class="btn btn-success btn-xs" ng-click="approveRegisterRequest(req.id)">通过</button>
+            <button class="btn btn-danger btn-xs" ng-click="rejectRegisterRequest(req.id)">拒绝</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="col-md-8">

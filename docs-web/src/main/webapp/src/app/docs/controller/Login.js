@@ -5,6 +5,9 @@
  */
 angular.module('docs').controller('Login', function(Restangular, $scope, $rootScope, $state, $stateParams, $dialog, User, $translate, $uibModal) {
   $scope.codeRequired = false;
+  $scope.showRegister = false;
+  $scope.registerData = {};
+  $scope.registerMsg = '';
 
   // Get the app configuration
   Restangular.one('app').get().then(function(data) {
@@ -73,6 +76,22 @@ angular.module('docs').controller('Login', function(Restangular, $scope, $rootSc
         var btns = [{result: 'ok', label: $translate.instant('ok'), cssClass: 'btn-primary'}];
         $dialog.messageBox(title, msg, btns);
       });
+    });
+  };
+
+  $scope.openRegister = function() {
+    $scope.showRegister = true;
+    $scope.registerData = {};
+    $scope.registerMsg = '';
+  };
+  $scope.closeRegister = function() {
+    $scope.showRegister = false;
+  };
+  $scope.submitRegister = function() {
+    User.registerRequest($scope.registerData).then(function(response) {
+      $scope.registerMsg = response.data;
+    }, function(error) {
+      $scope.registerMsg = error.data.message || '注册失败';
     });
   };
 });

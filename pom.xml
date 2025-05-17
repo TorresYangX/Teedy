@@ -499,6 +499,12 @@
         <version>${com.levigo.jbig2.levigo-jbig2-imageio.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.glassfish.jersey.media</groupId>
+        <artifactId>jersey-media-json-jackson</artifactId>
+        <version>${org.glassfish.jersey.version}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
   <distributionManagement>
