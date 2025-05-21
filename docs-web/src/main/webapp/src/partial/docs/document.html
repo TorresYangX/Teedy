@@ -342,3 +342,147 @@
     <div ui-view="document"></div>
   </div>
 </div>
+
+<style>
+  /* 左侧卡片美化 */
+  .well-3d {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(42,178,220,0.10);
+    border: none;
+    padding: 28px 22px 22px 22px;
+    margin-bottom: 24px;
+  }
+  .well-3d-background {
+    display: none;
+  }
+  /* 按钮美化 */
+  .btn-primary, .btn-primary:focus {
+    background: linear-gradient(90deg, #2ab2dc 0%, #0078d7 100%);
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(42,178,220,0.08);
+    transition: background 0.2s;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(90deg, #0078d7 0%, #2ab2dc 100%);
+    color: #fff;
+  }
+  .btn-default {
+    border-radius: 8px;
+    background: #f8fafc;
+    border: 1px solid #e0e0e0;
+    color: #0078d7;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-default:hover {
+    background: #e0f7fa;
+    color: #2ab2dc;
+  }
+  /* 搜索框美化 */
+  #search-box .form-control {
+    border-radius: 8px 0 0 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: none;
+    font-size: 1.8rem;
+    padding: 10px 16px;
+  }
+  #search-box .input-group-addon.btn {
+    border-radius: 0 8px 8px 0;
+    background: #e0f7fa;
+    border: 1px solid #e0e0e0;
+    color: #0078d7;
+    font-size: 1.8rem;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  #search-box .input-group-addon.btn:hover {
+    background: #2ab2dc;
+    color: #fff;
+  }
+  /* 表格美化 */
+  .table-documents {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px 0 rgba(42,178,220,0.08);
+    overflow: hidden;
+    margin-top: 18px;
+  }
+  .table-documents thead th {
+    background: #e0f7fa;
+    color: #0078d7;
+    font-weight: 600;
+    font-size: 1.5rem;
+    border: none;
+  }
+  .table-documents tbody tr {
+    transition: background 0.2s;
+  }
+  .table-documents tbody tr:hover {
+    background: #f0f8fa;
+  }
+  .table-documents td {
+    border: none;
+    font-size: 1.6rem;
+  }
+  /* 分页美化 */
+  .pagination-box select.form-control {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    font-size: 1.5rem;
+    padding: 4px 10px;
+    width: auto;
+    display: inline-block;
+    margin: 0 8px;
+  }
+  .pagination > li > a, .pagination > li > span {
+    border-radius: 8px !important;
+    color: #0078d7;
+    font-weight: 500;
+    border: 1px solid #e0e0e0;
+    margin: 0 2px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .pagination > li.active > a, .pagination > li.active > span {
+    background: #2ab2dc;
+    color: #fff;
+    border: none;
+  }
+  .pagination > li > a:hover {
+    background: #e0f7fa;
+    color: #2ab2dc;
+  }
+  /* 右侧详情区美化 */
+  [ui-view="document"] {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(42,178,220,0.10);
+    padding: 28px 22px 22px 22px;
+    min-height: 400px;
+  }
+  /* 标签、面包屑等 */
+  .breadcrumb-navigation {
+    background: none;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    padding: 6px 12px;
+  }
+  .label {
+    border-radius: 6px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 4px 10px;
+  }
+  .label-info {
+    background: #e0f7fa;
+    color: #0078d7;
+  }
+  .label-info[invert-text-color] {
+    color: #fff;
+  }
+</style>

@@ -110,6 +110,144 @@
     <script src="app/docs/directive/AddSpaceBetween.js" type="text/javascript"></script>
     <script src="app/docs/directive/InvertTextColor.js" type="text/javascript"></script>
     <!-- endref -->
+    <style>
+      /* 顶部导航栏美化 */
+      .navbar {
+        background: linear-gradient(90deg, #e0f7fa 0%, #2ab2dc 100%);
+        border: none;
+        border-radius: 0 0 18px 18px;
+        box-shadow: 0 4px 16px rgba(42,178,220,0.10);
+        min-height: 60px;
+        margin-bottom: 32px;
+        padding: 0 32px;
+        font-size: 1.25rem;
+      }
+      .navbar .navbar-brand {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #0078d7 !important;
+        letter-spacing: 2px;
+        padding: 16px 24px 16px 0;
+        text-shadow: 0 2px 8px rgba(42,178,220,0.08);
+      }
+      .navbar .navbar-brand span {
+        color: #2ab2dc;
+      }
+      .navbar .nav > li > a {
+        font-size: 1.35rem;
+        font-weight: 500;
+        color: #0078d7 !important;
+        border-radius: 8px;
+        margin: 0 6px;
+        padding: 16px 24px;
+        transition: background 0.2s, color 0.2s;
+      }
+      .navbar .nav > li > a:hover, .navbar .nav > li.active > a {
+        background: #fff;
+        color: #2ab2dc !important;
+        box-shadow: 0 2px 8px rgba(42,178,220,0.08);
+        text-decoration: none;
+      }
+      .navbar .navbar-right > li > a {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: #0078d7 !important;
+        border-radius: 8px;
+        margin: 0 4px;
+        padding: 16px 20px;
+        background: rgba(255,255,255,0.10);
+        transition: background 0.2s, color 0.2s;
+      }
+      .navbar .navbar-right > li > a:hover {
+        background: #fff;
+        color: #2ab2dc !important;
+        box-shadow: 0 2px 8px rgba(42,178,220,0.08);
+      }
+      .navbar .navbar-right > li > a .fas {
+        margin-right: 6px;
+      }
+      .navbar .navbar-toggle {
+        margin-top: 14px;
+        margin-bottom: 14px;
+        border-radius: 8px;
+        border: none;
+        background: #2ab2dc;
+      }
+      .navbar .icon-bar {
+        background: #fff;
+      }
+      @media (max-width: 767px) {
+        .navbar {
+          padding: 0 8px;
+          border-radius: 0 0 12px 12px;
+          font-size: 1rem;
+        }
+        .navbar .navbar-brand {
+          font-size: 1.5rem;
+          padding: 12px 8px 12px 0;
+        }
+        .navbar .nav > li > a, .navbar .navbar-right > li > a {
+          font-size: 1.1rem;
+          padding: 10px 10px;
+        }
+      }
+      /* 主内容区背景美化 */
+      .main-content-bg {
+        background: linear-gradient(120deg, #f8fafc 60%, #e0f7fa 100%);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+        padding: 36px 32px 32px 32px;
+        margin: 32px auto 32px auto;
+        min-height: 600px;
+        max-width: 1200px;
+      }
+      @media (max-width: 991px) {
+        .main-content-bg {
+          padding: 18px 6px 18px 6px;
+          margin: 16px 0 16px 0;
+          border-radius: 12px;
+        }
+      }
+      /* 页脚美化 */
+      .footer {
+        background: linear-gradient(90deg, #e0f7fa 0%, #f8fafc 100%);
+        border-radius: 18px 18px 0 0;
+        box-shadow: 0 -2px 16px 0 rgba(42,178,220,0.08);
+        margin: 32px 0 0 0;
+        padding: 18px 0 10px 0;
+        width: 100%;
+        font-size: 1.08rem;
+        color: #0078d7;
+        letter-spacing: 1px;
+        text-align: center;
+      }
+      .footer .list-inline > li > a {
+        color: #0078d7;
+        font-weight: 500;
+        border-radius: 6px;
+        padding: 4px 10px;
+        transition: background 0.2s, color 0.2s;
+      }
+      .footer .list-inline > li > a:hover {
+        background: #e0f7fa;
+        color: #2ab2dc;
+        text-decoration: none;
+      }
+      .footer .dropdown-menu > li > a {
+        color: #0078d7;
+      }
+      .footer .dropdown-menu > li > a.bg-info {
+        background: #e0f7fa;
+        color: #2ab2dc;
+      }
+      @media (max-width: 991px) {
+        .footer {
+          border-radius: 12px 12px 0 0;
+          font-size: 0.98rem;
+          padding: 10px 0 6px 0;
+        }
+      }
+    </style>
   </head>
   <body translate-cloak ng-cloak>
     <onboarding-popover ng-if="onboardingEnabled" enabled="onboardingEnabled" steps="onboardingSteps"></onboarding-popover>
@@ -169,7 +307,7 @@
     </nav>
     
     <div ui-view="page">
-      <div class="container" ng-controller="Login">
+      <div class="main-content-bg" ng-controller="Login">
         <form ng-submit="login()" ng-show="!showRegister">
           <input type="text" ng-model="user.username" placeholder="用户名" required>
           <input type="password" ng-model="user.password" placeholder="密码" required>

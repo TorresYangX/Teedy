@@ -30,3 +30,70 @@
     <div ui-view="settings"></div>
   </div>
 </div>
+
+<style>
+  /* 设置页面整体布局美化 */
+  .settings-menu .panel {
+    border-radius: 16px;
+    box-shadow: 0 4px 16px 0 rgba(42,178,220,0.08);
+    border: none;
+    margin-bottom: 24px;
+    background: #fff;
+  }
+  .settings-menu .panel-heading {
+    border-radius: 16px 16px 0 0;
+    background: linear-gradient(90deg, #e0f7fa 0%, #f8fafc 100%);
+    font-weight: 600;
+    font-size: 1.85rem;
+    color: #0078d7;
+    border: none;
+    padding: 16px 18px;
+  }
+  .settings-menu .list-group-item {
+    border: none;
+    border-radius: 8px;
+    margin: 6px 8px;
+    font-size: 1.52rem;
+    color: #0078d7;
+    font-weight: 500;
+    background: #f8fafc;
+    transition: background 0.2s, color 0.2s;
+  }
+  .settings-menu .list-group-item.active,
+  .settings-menu .list-group-item:focus,
+  .settings-menu .list-group-item:hover {
+    background: #e0f7fa;
+    color: #2ab2dc;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .settings-content {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(42,178,220,0.10);
+    padding: 32px 28px 28px 28px;
+    min-height: 600px;
+    margin-bottom: 24px;
+    font-size: 1.22rem;
+  }
+  @media (max-width: 991px) {
+    .settings-content {
+      padding: 16px 6px 16px 6px;
+      border-radius: 12px;
+      min-height: 300px;
+      font-size: 1.08rem;
+    }
+    .settings-menu .panel {
+      border-radius: 12px;
+    }
+    .settings-menu .panel-heading {
+      border-radius: 12px 12px 0 0;
+      font-size: 1.15rem;
+      padding: 10px 12px;
+    }
+    .settings-menu .list-group-item {
+      font-size: 1.08rem;
+      margin: 4px 4px;
+    }
+  }
+</style>

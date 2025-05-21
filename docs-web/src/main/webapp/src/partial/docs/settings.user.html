@@ -1,51 +1,69 @@
-<h1>
-  <span translate="settings.user.title"></span>
-  <a class="btn btn-primary" href="#/settings/user/add">{{ 'settings.user.add_user' | translate }}</a>
+<h1 class="page-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding: 16px 24px; background: linear-gradient(90deg, #e0f7fa 0%, #f8fafc 100%); border-radius: 16px; box-shadow: 0 4px 16px rgba(42,178,220,0.08);">
+  <span translate="settings.user.title" style="font-size: 28px; font-weight: 600; color: #0078d7;"></span>
+  <a class="btn btn-primary" href="#/settings/user/add" style="background: linear-gradient(90deg, #2ab2dc 0%, #0078d7 100%); border: none; border-radius: 8px; padding: 8px 20px; font-weight: 500; box-shadow: 0 2px 8px rgba(42,178,220,0.2); transition: all 0.3s ease;">
+    <i class="fas fa-user-plus" style="margin-right: 8px;"></i>{{ 'settings.user.add_user' | translate }}
+  </a>
 </h1>
 
 <div class="row">
   <div class="col-md-4">
-    <div class="panel panel-default" style="border-radius: 16px; box-shadow: 0 4px 16px rgba(42,178,220,0.08);">
-      <div class="panel-heading" style="border-radius: 16px 16px 0 0; background: linear-gradient(90deg, #e0f7fa 0%, #f8fafc 100%); font-weight: 600; font-size: 18px;">用户列表</div>
-      <div class="panel-body" style="padding: 18px 12px;">
-        <table class="table table-hover table-users" style="border-radius: 8px; overflow: hidden;">
+    <div class="panel panel-default" style="border-radius: 16px; box-shadow: 0 4px 16px rgba(42,178,220,0.08); border: none; background: #fff;">
+      <div class="panel-heading" style="border-radius: 16px 16px 0 0; background: linear-gradient(90deg, #e0f7fa 0%, #f8fafc 100%); font-weight: 600; font-size: 20px; padding: 16px 20px; color: #0078d7; border: none;">
+        <i class="fas fa-users" style="margin-right: 8px;"></i>用户列表
+      </div>
+      <div class="panel-body" style="padding: 20px;">
+        <table class="table table-hover table-users" style="border-radius: 12px; overflow: hidden; margin-bottom: 0;">
           <thead>
             <tr style="background: #f8fafc;">
-              <th>{{ 'settings.user.username' | translate }}</th>
-              <th>{{ 'settings.user.create_date' | translate }}</th>
+              <th style="padding: 12px 16px; font-weight: 600; color: #0078d7;">{{ 'settings.user.username' | translate }}</th>
+              <th style="padding: 12px 16px; font-weight: 600; color: #0078d7;">{{ 'settings.user.create_date' | translate }}</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="user in users | orderBy: 'username'" ng-click="editUser(user)"
-                ng-class="{ active: $stateParams.username == user.username }" style="transition: background 0.2s;">
-              <td>
-                <span ng-if="!user.disabled">{{ user.username }}</span>
-                <s ng-if="user.disabled">{{ user.username }}</s>
-                <span class="fas fa-lock" ng-show="user.totp_enabled" uib-tooltip="{{ 'settings.user.totp_enabled' | translate }}"></span>
+            <tr ng-repeat="user in users | orderBy: 'username'" 
+                ng-click="editUser(user)"
+                ng-class="{ active: $stateParams.username == user.username }" 
+                style="transition: all 0.2s ease; cursor: pointer; border-bottom: 1px solid #f0f0f0;">
+              <td style="padding: 12px 16px;">
+                <span ng-if="!user.disabled" style="color: #333; font-weight: 500;">{{ user.username }}</span>
+                <s ng-if="user.disabled" style="color: #999;">{{ user.username }}</s>
+                <span class="fas fa-lock" ng-show="user.totp_enabled" uib-tooltip="{{ 'settings.user.totp_enabled' | translate }}" style="margin-left: 8px; color: #2ab2dc;"></span>
               </td>
-              <td>{{ user.create_date | date: dateFormat }}</td>
+              <td style="padding: 12px 16px; color: #666;">{{ user.create_date | date: dateFormat }}</td>
             </tr>
           </tbody>
         </table>
+
         <!-- 注册请求审批表格 -->
-        <div style="margin-top: 24px;">
-          <h4 style="font-weight: 600;">待审批注册请求</h4>
-          <button class="btn btn-info btn-xs" ng-click="loadRegisterRequests()" style="border-radius: 6px; margin-bottom: 8px;">刷新</button>
-          <table class="table table-bordered" style="border-radius: 8px; overflow: hidden; background: #f8fafc;">
+        <div style="margin-top: 32px; background: #f8fafc; border-radius: 12px; padding: 20px;">
+          <h4 style="font-weight: 600; color: #0078d7; margin-bottom: 16px; display: flex; align-items: center;">
+            <i class="fas fa-user-clock" style="margin-right: 8px;"></i>待审批注册请求
+          </h4>
+          <button class="btn btn-info btn-xs" ng-click="loadRegisterRequests()" 
+                  style="border-radius: 6px; margin-bottom: 16px; background: linear-gradient(90deg, #2ab2dc 0%, #0078d7 100%); border: none; padding: 6px 12px; font-weight: 500; box-shadow: 0 2px 8px rgba(42,178,220,0.2);">
+            <i class="fas fa-sync-alt" style="margin-right: 4px;"></i>刷新
+          </button>
+          <table class="table table-bordered" style="border-radius: 12px; overflow: hidden; background: #fff; margin-bottom: 0;">
             <thead>
-              <tr style="background: #e0f7fa;">
-                <th>用户名</th>
-                <th>邮箱</th>
-                <th>操作</th>
+              <tr style="background: linear-gradient(90deg, #e0f7fa 0%, #f8fafc 100%);">
+                <th style="padding: 12px 16px; font-weight: 600; color: #0078d7; border: none;">用户名</th>
+                <th style="padding: 12px 16px; font-weight: 600; color: #0078d7; border: none;">邮箱</th>
+                <th style="padding: 12px 16px; font-weight: 600; color: #0078d7; border: none;">操作</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="req in registerRequests" style="transition: background 0.2s;">
-                <td>{{ req.username }}</td>
-                <td>{{ req.email }}</td>
-                <td>
-                  <button class="btn btn-success btn-xs" ng-click="approveRegisterRequest(req.id)" style="border-radius: 6px; margin-right: 4px; background: linear-gradient(90deg, #2ab2dc 0%, #0078d7 100%); border: none;">通过</button>
-                  <button class="btn btn-danger btn-xs" ng-click="rejectRegisterRequest(req.id)" style="border-radius: 6px; background: linear-gradient(90deg, #ff5f6d 0%, #ffc371 100%); border: none;">拒绝</button>
+              <tr ng-repeat="req in registerRequests" style="transition: all 0.2s ease; border-bottom: 1px solid #f0f0f0;">
+                <td style="padding: 12px 16px; color: #333; font-weight: 500;">{{ req.username }}</td>
+                <td style="padding: 12px 16px; color: #666;">{{ req.email }}</td>
+                <td style="padding: 12px 16px;">
+                  <button class="btn btn-success btn-xs" ng-click="approveRegisterRequest(req.id)" 
+                          style="border-radius: 6px; margin-right: 8px; background: linear-gradient(90deg, #2ab2dc 0%, #0078d7 100%); border: none; padding: 6px 12px; font-weight: 500; box-shadow: 0 2px 8px rgba(42,178,220,0.2);">
+                    <i class="fas fa-check" style="margin-right: 4px;"></i>通过
+                  </button>
+                  <button class="btn btn-danger btn-xs" ng-click="rejectRegisterRequest(req.id)" 
+                          style="border-radius: 6px; background: linear-gradient(90deg, #ff5f6d 0%, #ffc371 100%); border: none; padding: 6px 12px; font-weight: 500; box-shadow: 0 2px 8px rgba(255,95,109,0.2);">
+                    <i class="fas fa-times" style="margin-right: 4px;"></i>拒绝
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -55,6 +73,25 @@
     </div>
   </div>
   <div class="col-md-8">
-    <div ui-view="user"></div>
+    <div ui-view="user" style="background: #fff; border-radius: 16px; box-shadow: 0 4px 16px rgba(42,178,220,0.08); padding: 24px;"></div>
   </div>
 </div>
+
+<style>
+  .table-users tr:hover {
+    background: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(42,178,220,0.1);
+  }
+  .table-users tr.active {
+    background: #e0f7fa;
+    border-left: 4px solid #2ab2dc;
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(42,178,220,0.3);
+  }
+  .btn:active {
+    transform: translateY(0);
+  }
+</style>
