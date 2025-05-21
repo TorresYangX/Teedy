@@ -4,50 +4,56 @@
 </h1>
 
 <div class="row">
-  <div class="col-md-4 well">
-    <table class="table table-hover table-users">
-      <thead>
-        <tr>
-          <th>{{ 'settings.user.username' | translate }}</th>
-          <th>{{ 'settings.user.create_date' | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="user in users | orderBy: 'username'" ng-click="editUser(user)"
-            ng-class="{ active: $stateParams.username == user.username }">
-          <td>
-            <span ng-if="!user.disabled">{{ user.username }}</span>
-            <s ng-if="user.disabled">{{ user.username }}</s>
-            <span class="fas fa-lock" ng-show="user.totp_enabled" uib-tooltip="{{ 'settings.user.totp_enabled' | translate }}"></span>
-          </td>
-          <td>{{ user.create_date | date: dateFormat }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- 注册请求审批表格 -->
-    <h4>待审批注册请求</h4>
-    <button class="btn btn-default btn-xs" ng-click="loadRegisterRequests()">刷新</button>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>用户名</th>
-          <th>邮箱</th>
-          <th>操作</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="req in registerRequests">
-          <td>{{ req.username }}</td>
-          <td>{{ req.email }}</td>
-          <td>
-            <button class="btn btn-success btn-xs" ng-click="approveRegisterRequest(req.id)">通过</button>
-            <button class="btn btn-danger btn-xs" ng-click="rejectRegisterRequest(req.id)">拒绝</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="col-md-4">
+    <div class="panel panel-default" style="border-radius: 16px; box-shadow: 0 4px 16px rgba(42,178,220,0.08);">
+      <div class="panel-heading" style="border-radius: 16px 16px 0 0; background: linear-gradient(90deg, #e0f7fa 0%, #f8fafc 100%); font-weight: 600; font-size: 18px;">用户列表</div>
+      <div class="panel-body" style="padding: 18px 12px;">
+        <table class="table table-hover table-users" style="border-radius: 8px; overflow: hidden;">
+          <thead>
+            <tr style="background: #f8fafc;">
+              <th>{{ 'settings.user.username' | translate }}</th>
+              <th>{{ 'settings.user.create_date' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="user in users | orderBy: 'username'" ng-click="editUser(user)"
+                ng-class="{ active: $stateParams.username == user.username }" style="transition: background 0.2s;">
+              <td>
+                <span ng-if="!user.disabled">{{ user.username }}</span>
+                <s ng-if="user.disabled">{{ user.username }}</s>
+                <span class="fas fa-lock" ng-show="user.totp_enabled" uib-tooltip="{{ 'settings.user.totp_enabled' | translate }}"></span>
+              </td>
+              <td>{{ user.create_date | date: dateFormat }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 注册请求审批表格 -->
+        <div style="margin-top: 24px;">
+          <h4 style="font-weight: 600;">待审批注册请求</h4>
+          <button class="btn btn-info btn-xs" ng-click="loadRegisterRequests()" style="border-radius: 6px; margin-bottom: 8px;">刷新</button>
+          <table class="table table-bordered" style="border-radius: 8px; overflow: hidden; background: #f8fafc;">
+            <thead>
+              <tr style="background: #e0f7fa;">
+                <th>用户名</th>
+                <th>邮箱</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="req in registerRequests" style="transition: background 0.2s;">
+                <td>{{ req.username }}</td>
+                <td>{{ req.email }}</td>
+                <td>
+                  <button class="btn btn-success btn-xs" ng-click="approveRegisterRequest(req.id)" style="border-radius: 6px; margin-right: 4px; background: linear-gradient(90deg, #2ab2dc 0%, #0078d7 100%); border: none;">通过</button>
+                  <button class="btn btn-danger btn-xs" ng-click="rejectRegisterRequest(req.id)" style="border-radius: 6px; background: linear-gradient(90deg, #ff5f6d 0%, #ffc371 100%); border: none;">拒绝</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
-
   <div class="col-md-8">
     <div ui-view="user"></div>
   </div>

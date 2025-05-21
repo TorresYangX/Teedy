@@ -3,101 +3,214 @@
   .navbar {
     display: none;
   }
-
-  /* Absolute positionned footer on top of the login background */
-  .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border: none;
+  html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
-
-  @media screen and (min-width: 768px) {
-    .footer {
-      width: 50%;
+  .login-root {
+    min-height: 100vh;
+    min-width: 100vw;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    background: linear-gradient(120deg, #e0f7fa 0%, #f8fafc 100%);
+    box-sizing: border-box;
+  }
+  .login-box, .login-img-container {
+    flex: 0 0 50%;
+    width: 50%;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  .login-box {
+    background: #fff;
+    border-radius: 16px 0 0 16px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    padding: 48px 40px 40px 40px;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-box img {
+    margin-bottom: 32px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    max-width: 180px;
+  }
+  .form-control {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: none;
+    transition: border-color 0.2s;
+    font-size: 18px;
+    padding: 14px 16px;
+  }
+  .form-control:focus {
+    border-color: #2ab2dc;
+    box-shadow: 0 0 0 2px rgba(42,178,220,0.12);
+  }
+  .btn-primary, .btn-success {
+    border-radius: 8px;
+    background: linear-gradient(90deg, #2ab2dc 0%, #0078d7 100%);
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(42,178,220,0.08);
+    transition: background 0.2s;
+    font-size: 20px;
+    padding: 14px 0;
+  }
+  .btn-primary:hover, .btn-success:hover {
+    background: linear-gradient(90deg, #0078d7 0%, #2ab2dc 100%);
+  }
+  .btn-link {
+    color: #2ab2dc;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background 0.2s;
+    font-size: 18px;
+  }
+  .btn-link:hover {
+    background: #f0f8fa;
+    color: #0078d7;
+    text-decoration: none;
+  }
+  .btn-block {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 14px 0;
+    font-size: 20px;
+    width: 100%;
+  }
+  .form-group {
+    margin-bottom: 22px;
+  }
+  .login-img-container {
+    background: url('img/login-bg.jpg') center/cover no-repeat;
+    border-radius: 0 16px 16px 0;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .text-info {
+    margin-top: 12px;
+    color: #0078d7;
+    font-weight: 500;
+  }
+  .text-center {
+    margin-top: 12px;
+  }
+  .well-sm {
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+  @media (max-width: 991px) {
+    .login-root {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+    }
+    .login-img-container {
+      margin-left: 0;
+      margin-top: 24px;
+      min-width: 240px;
+      max-width: 100vw;
+      min-height: 220px;
+      height: 220px;
+      border-radius: 16px;
+      width: 100%;
+      flex: 0 0 100%;
+    }
+    .login-box {
+      min-width: 240px;
+      max-width: 100vw;
+      border-radius: 16px;
+      width: 100%;
+      flex: 0 0 100%;
     }
   }
-
-  /* Smaller links everywhere on login */
-  a {
-    font-size: 90%;
-    color: #666;
+  @media (max-width: 767px) {
+    .login-img-container {
+      display: none;
+    }
+    .login-box {
+      margin: 24px 0;
+      min-width: unset;
+      max-width: 100%;
+    }
   }
 </style>
-<div class="row vertical-center">
-  <div class="col-sm-6 col-xs-12 login-box">
-    <div class="row">
-      <div class="col-lg-offset-4 col-lg-4 col-xs-offset-1 col-xs-10">
-        <img src="img/title.png" class="img-responsive" />
-
-        <!-- 登录表单 -->
-        <form ng-show="!showRegister" ng-submit="login()">
-          <div class="form-group">
-            <label class="sr-only" for="inputUsername">{{ 'login.username' | translate }}</label>
-            <input class="form-control" type="text" id="inputUsername" name="username"
-                   ng-attr-placeholder="{{ 'login.username' | translate }}" ng-model="user.username" />
-          </div>
-
-          <div class="form-group">
-            <label class="sr-only" for="inputPassword">{{ 'login.password' | translate }}</label>
-            <input class="form-control" type="password" id="inputPassword" name="password"
-                   ng-attr-placeholder="{{ 'login.password' | translate }}" ng-model="user.password" />
-          </div>
-
-          <span class="help-block" ng-if="codeRequired">
-            {{ 'login.validation_code_required' | translate }}
-            <span class="fas fa-question-circle" title="{{ 'login.validation_code_title' | translate }}"></span>
-          </span>
-          <div class="form-group" ng-if="codeRequired">
-            <label class="sr-only" for="inputCode">{{ 'login.validation_code' | translate }}</label>
-            <input class="form-control" type="text" id="inputCode" name="code"
-                   ng-attr-placeholder="{{ 'login.validation_code' | translate }}" ng-model="user.code" />
-          </div>
-
-          <div class="checkbox text-muted">
-            <label>
-              <input type="checkbox" ng-model="user.remember" name="remember" /> {{ 'login.remember_me' | translate }}
-            </label>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <button type="submit" class="btn btn-primary">
-                <span class="fas fa-check"></span> {{ 'login.submit' | translate }}
-              </button>
-            </div>
-            <div class="col-md-6 text-right btn-password-lost">
-              <div class="well-sm">
-                <a href ng-click="openPasswordLost()">{{ 'login.password_lost_btn' | translate }}</a>
-              </div>
-            </div>
-          </div>
-
-          <p class="text-center" ng-if="app.guest_login">&nbsp;</p>
-          <button type="submit" class="btn btn-default btn-block" ng-if="app.guest_login" ng-click="loginAsGuest()">
-            <span class="fas fa-user"></span> {{ 'login.login_as_guest' | translate }}
-          </button>
-          <!-- 新增注册按钮 -->
-          <button type="button" class="btn btn-link btn-block" ng-click="openRegister()">注册</button>
-        </form>
-        <form ng-show="showRegister" ng-submit="submitRegister()">
-          <div class="form-group">
-            <input class="form-control" type="text" ng-model="registerData.username" placeholder="用户名" required>
-          </div>
-          <div class="form-group">
-            <input class="form-control" type="email" ng-model="registerData.email" placeholder="邮箱" required>
-          </div>
-          <div class="form-group">
-            <input class="form-control" type="password" ng-model="registerData.password" placeholder="密码" required>
-          </div>
-          <button type="submit" class="btn btn-success btn-block">提交注册请求</button>
-          <button type="button" class="btn btn-link btn-block" ng-click="closeRegister()">返回登录</button>
-          <div class="text-info">{{registerMsg}}</div>
-        </form>
+<div class="login-root">
+  <div class="login-box">
+    <img src="img/title.png" class="img-responsive" />
+    <!-- 登录表单 -->
+    <form ng-show="!showRegister" ng-submit="login()">
+      <div class="form-group">
+        <label class="sr-only" for="inputUsername">{{ 'login.username' | translate }}</label>
+        <input class="form-control" type="text" id="inputUsername" name="username"
+               ng-attr-placeholder="{{ 'login.username' | translate }}" ng-model="user.username" />
       </div>
-    </div>
+      <div class="form-group">
+        <label class="sr-only" for="inputPassword">{{ 'login.password' | translate }}</label>
+        <input class="form-control" type="password" id="inputPassword" name="password"
+               ng-attr-placeholder="{{ 'login.password' | translate }}" ng-model="user.password" />
+      </div>
+      <span class="help-block" ng-if="codeRequired">
+        {{ 'login.validation_code_required' | translate }}
+        <span class="fas fa-question-circle" title="{{ 'login.validation_code_title' | translate }}"></span>
+      </span>
+      <div class="form-group" ng-if="codeRequired">
+        <label class="sr-only" for="inputCode">{{ 'login.validation_code' | translate }}</label>
+        <input class="form-control" type="text" id="inputCode" name="code"
+               ng-attr-placeholder="{{ 'login.validation_code' | translate }}" ng-model="user.code" />
+      </div>
+      <div class="checkbox text-muted">
+        <label>
+          <input type="checkbox" ng-model="user.remember" name="remember" /> {{ 'login.remember_me' | translate }}
+        </label>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-primary btn-block">
+            <span class="fas fa-check"></span> {{ 'login.submit' | translate }}
+          </button>
+        </div>
+        <div class="col-md-6 text-right btn-password-lost">
+          <div class="well-sm">
+            <a href ng-click="openPasswordLost()">{{ 'login.password_lost_btn' | translate }}</a>
+          </div>
+        </div>
+      </div>
+      <p class="text-center" ng-if="app.guest_login">&nbsp;</p>
+      <button type="submit" class="btn btn-default btn-block" ng-if="app.guest_login" ng-click="loginAsGuest()">
+        <span class="fas fa-user"></span> {{ 'login.login_as_guest' | translate }}
+      </button>
+      <!-- 新增注册按钮 -->
+      <button type="button" class="btn btn-link btn-block" ng-click="openRegister()">注册</button>
+    </form>
+    <form ng-show="showRegister" ng-submit="submitRegister()">
+      <div class="form-group">
+        <input class="form-control" type="text" ng-model="registerData.username" placeholder="用户名" required>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="email" ng-model="registerData.email" placeholder="邮箱" required>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="password" ng-model="registerData.password" placeholder="密码" required>
+      </div>
+      <button type="submit" class="btn btn-success btn-block">提交注册请求</button>
+      <button type="button" class="btn btn-link btn-block" ng-click="closeRegister()">返回登录</button>
+      <div class="text-info">{{registerMsg}}</div>
+    </form>
   </div>
-
-  <div class="login-img-container col-sm-6 hidden-xs"></div>
+  <div class="login-img-container"></div>
 </div>
